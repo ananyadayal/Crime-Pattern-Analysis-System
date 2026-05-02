@@ -8,7 +8,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 
-
 // Database connection pool
 const db = mysql.createPool({
   host: process.env.DB_HOST,
@@ -21,23 +20,26 @@ const db = mysql.createPool({
   queueLimit: 0
 });
 
-db.getConnection((err, connection) => {
+// Test connection
+db.query('SELECT 1', (err) => {
   if (err) {
     console.log('Database connection failed:', err.message);
   } else {
     console.log('Connected to CrimeAnalytics database!');
-    connection.release();
   }
 });
+
+// Make db available to routes
+app.locals.db = db;
 
 // Routes
 const crimesRouter = require('./routes/crimes');
 const analyticsRouter = require('./routes/analytics');
+const officersRouter = require('./routes/officers');
 
 app.use('/api/crimes', crimesRouter);
 app.use('/api/analytics', analyticsRouter);
+app.use('/api/officers', officersRouter);
 
 const PORT = process.env.PORT || 3000;
-const officersRouter = require('./routes/officers');
-app.use('/api/officers', officersRouter);
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
