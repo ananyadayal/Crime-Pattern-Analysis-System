@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Crimes — Crime Analytics</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">Crime Analytics</div>
+  <ul>
+    <li><a href="index.html">Dashboard</a></li>
+    <li><a href="crimes.html" class="active">Crimes</a></li>
+    <li><a href="analytics.html">Analytics</a></li>
+  </ul>
+</nav>
+
+<main>
+  <div class="page-header">
+    <h2>Crime Records</h2>
+    <span class="subtitle">MANAGE — Add, close & delete records</span>
+  </div>
+
+  <!-- Add Crime Form -->
+  <div class="form-section">
+    <h2>Report New Crime</h2>
+    <div class="form-row">
+      <select id="f-type">
+        <option value="">Crime Type</option>
+        <option>Robbery</option>
+        <option>Theft</option>
+        <option>Assault</option>
+        <option>Fraud</option>
+        <option>Cybercrime</option>
+        <option>Drug Possession</option>
+        <option>Drug Trafficking</option>
+        <option>Vandalism</option>
+        <option>Kidnapping</option>
+      </select>
+      <input type="date" id="f-date">
+      <input type="time" id="f-time">
+      <select id="f-severity">
+        <option value="">Severity</option>
+        <option>Low</option>
+        <option>Medium</option>
+        <option>High</option>
+      </select>
+      <select id="f-location">
+        <option value="">Area</option>
+      </select>
+      <select id="f-officer">
+        <option value="">Officer</option>
+      </select>
+      <button onclick="addCrime()">+ Add Crime</button>
+    </div>
+  </div>
+<!-- Search & Filter Bar -->
+  <div class="filter-bar">
+    <input type="text" id="search" placeholder="Search by type, area, officer, suspect...">
+    <select id="filter-severity">
+      <option value="">All Severities</option>
+      <option>High</option>
+      <option>Medium</option>
+      <option>Low</option>
+    </select>
+    <select id="filter-status">
+      <option value="">All Statuses</option>
+      <option>Open</option>
+      <option>Closed</option>
+    </select>
+    <select id="filter-city">
+      <option value="">All Cities</option>
+      <option>Mumbai</option>
+      <option>Delhi</option>
+      <option>Bangalore</option>
+    </select>
+    <button onclick="resetFilters()">Reset</button>
+  </div>
+  <!-- Crimes Table -->
+  <div class="table-card">
+    <h3>All Crime Records</h3>
+    <div class="results-count" id="results-count"></div>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Type</th>
+          <th>Date</th>
+          <th>Area</th>
+          <th>City</th>
+          <th>Officer</th>
+          <th>Suspect</th>
+          <th>Severity</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="crimestbody"></tbody>
+    </table>
+  </div>
+
+</main>
+
+<script src="crimes.js"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Crime Analytics System</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">Crime Analytics</div>
+  <ul>
+    <li><a href="index.html" class="active">Dashboard</a></li>
+    <li><a href="crimes.html">Crimes</a></li>
+    <li><a href="analytics.html">Analytics</a></li>
+  </ul>
+</nav>
+
+<main>
+  <div class="page-header">
+    <h2>Dashboard</h2>
+    <span class="subtitle">LIVE — CrimeAnalytics DB</span>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <span class="stat-num" id="total-crimes">—</span>
+      <span class="stat-label">Total Crimes</span>
+    </div>
+    <div class="stat-card danger">
+      <span class="stat-num" id="open-cases">—</span>
+      <span class="stat-label">Open Cases</span>
+    </div>
+    <div class="stat-card warning">
+      <span class="stat-num" id="high-severity">—</span>
+      <span class="stat-label">High Severity</span>
+    </div>
+    <div class="stat-card success">
+      <span class="stat-num" id="closed-cases">—</span>
+      <span class="stat-label">Closed Cases</span>
+    </div>
+  </div>
+
+  <div class="charts-grid">
+    <div class="chart-card">
+      <h3>Crimes by Type</h3>
+      <canvas id="crimeTypeChart"></canvas>
+    </div>
+    <div class="chart-card">
+      <h3>Severity Breakdown</h3>
+      <canvas id="severityChart"></canvas>
+    </div>
+  </div>
+
+  <div class="chart-card full-width">
+    <h3>Crime Hotspots by Area</h3>
+    <canvas id="hotspotChart"></canvas>
+  </div>
+  <div class="chart-card full-width">
+    <h3>Monthly Crime Trend</h3>
+    <canvas id="trendChart"></canvas>
+  </div>
+
+</main>
+
+<script src="dashboard.js"></script>
+</body>
+</html>
