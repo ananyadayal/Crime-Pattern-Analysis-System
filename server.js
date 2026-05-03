@@ -42,4 +42,6 @@ app.use('/api/analytics', analyticsRouter);
 app.use('/api/officers', officersRouter);
 
 const PORT = process.env.PORT || 3000;
+const manageRouter = require('./routes/manage');
+app.use('/api/manage', manageRouter);
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Manage — Crime Analytics</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">Crime Analytics</div>
+  <ul>
+    <li><a href="index.html">Dashboard</a></li>
+    <li><a href="crimes.html">Crimes</a></li>
+    <li><a href="analytics.html">Analytics</a></li>
+    <li><a href="manage.html" class="active">Manage</a></li>
+  </ul>
+</nav>
+
+<main>
+  <div class="page-header">
+    <h2>Manage</h2>
+    <span class="subtitle">ADD — Locations, officers & stations</span>
+  </div>
+
+  <!-- Locations -->
+  <div class="form-section">
+    <h2>Add New Location</h2>
+    <div class="form-row">
+      <input type="text" id="l-area" placeholder="Area name (e.g. Karol Bagh)">
+      <input type="text" id="l-zone" placeholder="Zone (e.g. North)">
+      <input type="text" id="l-city" placeholder="City (e.g. Delhi)">
+      <button onclick="addLocation()">+ Add Location</button>
+    </div>
+  </div>
+
+  <div class="table-card" style="margin-bottom: 1.5rem;">
+    <h3>Existing Locations</h3>
+    <table>
+      <thead>
+        <tr><th>ID</th><th>Area</th><th>Zone</th><th>City</th></tr>
+      </thead>
+      <tbody id="locationbody"></tbody>
+    </table>
+  </div>
+
+  <!-- Officers -->
+  <div class="form-section">
+    <h2>Add New Officer</h2>
+    <div class="form-row">
+      <input type="text" id="o-name" placeholder="Officer name">
+      <input type="text" id="o-rank" placeholder="Rank (e.g. Inspector)">
+      <input type="text" id="o-phone" placeholder="Phone number">
+      <select id="o-station">
+        <option value="">Select Station</option>
+      </select>
+      <button onclick="addOfficer()">+ Add Officer</button>
+    </div>
+  </div>
+
+  <div class="table-card" style="margin-bottom: 1.5rem;">
+    <h3>Existing Officers</h3>
+    <table>
+      <thead>
+        <tr><th>ID</th><th>Name</th><th>Rank</th><th>Phone</th><th>Station</th></tr>
+      </thead>
+      <tbody id="officerbody"></tbody>
+    </table>
+  </div>
+
+  <!-- Police Stations -->
+  <div class="form-section">
+    <h2>Add New Police Station</h2>
+    <div class="form-row">
+      <input type="text" id="s-name" placeholder="Station name">
+      <input type="text" id="s-address" placeholder="Address">
+      <input type="text" id="s-phone" placeholder="Contact number">
+      <button onclick="addStation()">+ Add Station</button>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <h3>Existing Police Stations</h3>
+    <table>
+      <thead>
+        <tr><th>ID</th><th>Station Name</th><th>Address</th><th>Contact</th></tr>
+      </thead>
+      <tbody id="stationbody"></tbody>
+    </table>
+  </div>
+
+</main>
+
+<script src="manage.js"></script>
+</body>
+</html>
