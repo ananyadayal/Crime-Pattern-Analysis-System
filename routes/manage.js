@@ -68,5 +68,30 @@ router.post('/stations', (req, res) => {
     res.json({ message: 'Station added!', id: result.insertId });
   });
 });
+// DELETE location
+router.delete('/locations/:id', (req, res) => {
+  const db = req.app.locals.db;
+  db.query('DELETE FROM Location WHERE LocationID = ?', [req.params.id], (err) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json({ message: 'Location deleted.' });
+  });
+});
 
+// DELETE officer
+router.delete('/officers/:id', (req, res) => {
+  const db = req.app.locals.db;
+  db.query('DELETE FROM Officer WHERE OfficerID = ?', [req.params.id], (err) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json({ message: 'Officer deleted.' });
+  });
+});
+
+// DELETE station
+router.delete('/stations/:id', (req, res) => {
+  const db = req.app.locals.db;
+  db.query('DELETE FROM PoliceStation WHERE StationID = ?', [req.params.id], (err) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json({ message: 'Station deleted.' });
+  });
+});
 module.exports = router;

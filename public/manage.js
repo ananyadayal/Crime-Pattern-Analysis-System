@@ -12,13 +12,14 @@ function loadLocations() {
     .then(res => res.json())
     .then(data => {
       document.getElementById('locationbody').innerHTML = data.map(l => `
-        <tr>
-          <td class="crime-id">#${l.LocationID}</td>
-          <td>${l.AreaName}</td>
-          <td>${l.Zone}</td>
-          <td>${l.City}</td>
-        </tr>
-      `).join('');
+  <tr>
+    <td class="crime-id">#${l.LocationID}</td>
+    <td>${l.AreaName}</td>
+    <td>${l.Zone}</td>
+    <td>${l.City}</td>
+    <td><button class="btn-sm btn-danger" onclick="deleteLocation(${l.LocationID})">Delete</button></td>
+  </tr>
+`).join('');
     });
 }
 
@@ -54,14 +55,15 @@ function loadOfficers() {
     .then(res => res.json())
     .then(data => {
       document.getElementById('officerbody').innerHTML = data.map(o => `
-        <tr>
-          <td class="crime-id">#${o.OfficerID}</td>
-          <td>${o.OfficerName}</td>
-          <td>${o.OfficerRank}</td>
-          <td>${o.PhoneNumber}</td>
-          <td>${o.StationName || '—'}</td>
-        </tr>
-      `).join('');
+  <tr>
+    <td class="crime-id">#${o.OfficerID}</td>
+    <td>${o.OfficerName}</td>
+    <td>${o.OfficerRank}</td>
+    <td>${o.PhoneNumber}</td>
+    <td>${o.StationName || '—'}</td>
+    <td><button class="btn-sm btn-danger" onclick="deleteOfficer(${o.OfficerID})">Delete</button></td>
+  </tr>
+`).join('');
     });
 }
 
@@ -98,13 +100,14 @@ function loadStations() {
     .then(res => res.json())
     .then(data => {
       document.getElementById('stationbody').innerHTML = data.map(s => `
-        <tr>
-          <td class="crime-id">#${s.StationID}</td>
-          <td>${s.StationName}</td>
-          <td>${s.Address}</td>
-          <td>${s.ContactNumber}</td>
-        </tr>
-      `).join('');
+  <tr>
+    <td class="crime-id">#${s.StationID}</td>
+    <td>${s.StationName}</td>
+    <td>${s.Address}</td>
+    <td>${s.ContactNumber}</td>
+    <td><button class="btn-sm btn-danger" onclick="deleteStation(${s.StationID})">Delete</button></td>
+  </tr>
+`).join('');
 
       // Populate station dropdown in officer form
       const sel = document.getElementById('o-station');
@@ -142,6 +145,42 @@ function addStation() {
     document.getElementById('s-phone').value = '';
     loadStations();
   });
+}
+
+function deleteLocation(id) {
+  if (confirm('Delete this location? This will fail if crimes are linked to it.')) {
+    fetch(`/api/manage/locations/${id}`, { method: 'DELETE' })
+    .then(res => res.json())
+    .then(data => {
+      if (data.error) { showToast('Cannot delete — crimes are linked to this location!'); return; }
+      showToast('Location deleted.');
+      loadLocations();
+    });
+  }
+}
+
+function deleteOfficer(id) {
+  if (confirm('Delete this officer? This will fail if crimes are linked to them.')) {
+    fetch(`/api/manage/officers/${id}`, { method: 'DELETE' })
+    .then(res => res.json())
+    .then(data => {
+      if (data.error) { showToast('Cannot delete — crimes are linked to this officer!'); return; }
+      showToast('Officer deleted.');
+      loadOfficers();
+    });
+  }
+}
+
+function deleteStation(id) {
+  if (confirm('Delete this station? This will fail if officers are linked to it.')) {
+    fetch(`/api/manage/stations/${id}`, { method: 'DELETE' })
+    .then(res => res.json())
+    .then(data => {
+      if (data.error) { showToast('Cannot delete — officers are linked to this station!'); return; }
+      showToast('Station deleted.');
+      loadStations();
+    });
+  }
 }
 
 // Also update all nav links to include manage page
