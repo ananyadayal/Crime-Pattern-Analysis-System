@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Analytics — Crime Analytics</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">Crime Analytics</div>
+  <ul>
+    <li><a href="index.html">Dashboard</a></li>
+    <li><a href="crimes.html">Crimes</a></li>
+    <li><a href="analytics.html" class="active">Analytics</a></li>
+    <li><a href="manage.html">Manage</a></li>
+  </ul>
+</nav>
+
+<main>
+  <div class="page-header">
+    <h2>Analytics</h2>
+    <span class="subtitle">INSIGHTS — Hotspots, risk levels & workload</span>
+  </div>
+
+  <!-- Risk Levels Table -->
+  <div class="table-card" style="margin-bottom: 1rem;">
+    <h3>Area Risk Levels</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Area</th>
+          <th>Total Crimes</th>
+          <th>Risk Level</th>
+        </tr>
+      </thead>
+      <tbody id="riskbody"></tbody>
+    </table>
+  </div>
+
+  <!-- Charts -->
+  <div class="charts-grid" style="margin-bottom: 1rem;">
+    <div class="chart-card">
+      <h3>Officer Workload</h3>
+      <canvas id="workloadChart"></canvas>
+    </div>
+    <div class="chart-card">
+      <h3>Open vs Closed Cases</h3>
+      <canvas id="statusChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Officer Workload Table -->
+  <div class="table-card">
+    <h3>Officer Case Load</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Officer</th>
+          <th>Rank</th>
+          <th>Station</th>
+          <th>Cases Handled</th>
+        </tr>
+      </thead>
+      <tbody id="workloadbody"></tbody>
+    </table>
+  </div>
+
+</main>
+
+<script src="analytics.js"></script>
+</body>
+</html>
